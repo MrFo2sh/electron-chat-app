@@ -1,5 +1,6 @@
 const WebSocket = require("ws");
-const wsServer = new WebSocket.Server({ port: 8080 });
+const port = process.env.PORT || 8080;
+const wsServer = new WebSocket.Server({ port });
 
 const { v4: uuidv4 } = require("uuid");
 

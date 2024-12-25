@@ -26,7 +26,9 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("send-btn").addEventListener("click", sendMessage);
 
   function connect() {
-    socket = new WebSocket("ws://localhost:8080");
+    socket = new WebSocket(
+      "wss://electron-chat-aast-app-192a10425192.herokuapp.com/"
+    );
     // Connection opened
     socket.addEventListener("open", (event) => {
       console.log("event: ", event);
@@ -55,6 +57,14 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("messages-list").innerHTML += msg;
     });
   }
+
+  document
+    .getElementById("message-input")
+    .addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    });
 
   function dateFormat(date) {
     return new Date(date).toLocaleTimeString();
